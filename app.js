@@ -5,11 +5,12 @@ const Tasks = require('./models/tasks');
 
 const main = async () => {
   let opt = '';
+  let allTasks = {};
   const tasks = new Tasks();
   const listTasks = readRegister();
 
   if (listTasks) {
-    tareas = tasks.loadTasksFromArray(listTasks);
+    allTasks = tasks.loadTasksFromArray(listTasks);
   }
 
   do {
@@ -22,7 +23,18 @@ const main = async () => {
       break;
 
       case '2':
-        console.log(tasks.getTasksList);
+        tasks.allTasks(listTasks);
+        // console.log(tasks.getTasksList);
+      break;
+
+      case '3':
+        tasks.allTaskByStatus(listTasks, true);
+        // console.log(tasks.getTasksList);
+      break;
+
+      case '4':
+        tasks.allTaskByStatus(listTasks, false);
+        // console.log(tasks.getTasksList);
       break;
     }
 

@@ -1,3 +1,4 @@
+require('colors');
 const Task = require('./task');
 
 class Tasks {
@@ -9,7 +10,6 @@ class Tasks {
 
   get getTasksList() {
     const lists = [];
-
     Object.keys(this.lists).forEach(key => lists.push(this.lists[key]));
 
     return lists;
@@ -23,8 +23,21 @@ class Tasks {
 
   createTask(description = '') {
     const task = new Task(description);
-
     this.lists[task.id] = task;
+  }
+
+  allTasks(listOfTasks = []) {
+    listOfTasks.forEach((task, index) => {
+      console.log(`${index + 1}. `.green + `${task.description} :: ${task.completedAt !== null ? (`Completada`.green) : (`Pendiente` .red)}`);
+    });
+  }
+
+  allTaskByStatus(listOfTasks = [], completed) {
+    const lista = (completed) ? listOfTasks.filter(task => task.completedAt !== null) : listOfTasks.filter(task => task.completedAt == null);
+
+    lista.forEach((task, index) => {
+      console.log(`${index + 1}. `.green + `${task.description}`);
+    });
   }
 }
 
