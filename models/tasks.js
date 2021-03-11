@@ -40,6 +40,22 @@ class Tasks {
     this.lists[task.id] = task;
   }
 
+  updateTasks(ids = []) {
+    ids.forEach(id => {
+      const task = this.lists[id];
+
+      if (task.completedAt === null) {
+        task.completedAt = new Date().toISOString();
+      }
+    });
+
+    this.getTasksList.forEach(task => {
+      if (!ids.includes(task.id)) {
+        this.lists[task.id].completedAt = null;
+      }
+    })
+  }
+
   deleteTask(id = '') {
     if (this.lists[id]) {
       delete this.lists[id];

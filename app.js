@@ -1,5 +1,5 @@
 require('colors');
-const { inquirerMenu, inquirerPause, readInput, allTaskToDelete, confirm } = require('./helpers/inquirer');
+const { inquirerMenu, inquirerPause, readInput, allTaskToDelete, allTaskToComplete, confirm } = require('./helpers/inquirer');
 const { saveRegister, readRegister } = require('./helpers/saveFile');
 const Tasks = require('./models/tasks');
 
@@ -35,6 +35,11 @@ const main = async () => {
       case '4':
         tasks.allTaskByStatus(listTasks, false);
         // console.log(tasks.getTasksList);
+      break;
+
+      case '5':
+        const ids = await allTaskToComplete(tasks.getTasksList);
+        tasks.updateTasks(ids);
       break;
 
       case '6':
