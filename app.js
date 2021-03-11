@@ -24,17 +24,14 @@ const main = async () => {
 
       case '2':
         tasks.allTasks(listTasks);
-        // console.log(tasks.getTasksList);
       break;
 
       case '3':
         tasks.allTaskByStatus(listTasks, true);
-        // console.log(tasks.getTasksList);
       break;
 
       case '4':
         tasks.allTaskByStatus(listTasks, false);
-        // console.log(tasks.getTasksList);
       break;
 
       case '5':
