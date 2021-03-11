@@ -17,13 +17,8 @@ class Tasks {
 
   loadTasksFromArray(tasks = []) {
     tasks.forEach(task => this.lists[task.id] = task);
-    
-    return this.lists;
-  }
 
-  createTask(description = '') {
-    const task = new Task(description);
-    this.lists[task.id] = task;
+    return this.lists;
   }
 
   allTasks(listOfTasks = []) {
@@ -38,6 +33,17 @@ class Tasks {
     lista.forEach((task, index) => {
       console.log(`${index + 1}. `.green + `${task.description}`);
     });
+  }
+
+  createTask(description = '') {
+    const task = new Task(description);
+    this.lists[task.id] = task;
+  }
+
+  deleteTask(id = '') {
+    if (this.lists[id]) {
+      delete this.lists[id];
+    }
   }
 }
 
